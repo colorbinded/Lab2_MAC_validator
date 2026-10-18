@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "mac-validator"
+version = "1.0.0"
+description = "Проверка и поиск синтаксически корректных MAC-адресов"
+readme = "README.md"
+requires-python = ">=3.10"
+dependencies = ["requests>=2.31.0"]
+
+[project.optional-dependencies]
+test = ["pytest>=8.0", "pytest-cov>=5.0", "ruff>=0.6"]
+
+[project.scripts]
+mac-validator = "MAC_validator.validator:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+addopts = "-ra"
+
+[tool.coverage.run]
+branch = true
+source = ["MAC_validator"]
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 90
+
+[tool.ruff]
+line-length = 88
+target-version = "py310"
